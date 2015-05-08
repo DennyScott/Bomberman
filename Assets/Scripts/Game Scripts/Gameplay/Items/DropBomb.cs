@@ -17,7 +17,10 @@ public class DropBomb : MonoBehaviour {
 			if (Input.GetButtonUp("Fire1")) {
 				GameObject clone = Instantiate(bomb, transform.position, transform.rotation) as GameObject;
 				_bombInventory.bombPlaced += 1;
-				clone.GetComponent<ExplodeBomb>().Player = gameObject;
+				var explodeBomb = clone.GetComponent<ExplodeBomb>();
+				explodeBomb.Player = gameObject;
+				explodeBomb.Radius = _bombInventory.Radius;
+
 			}
 			
 		}
