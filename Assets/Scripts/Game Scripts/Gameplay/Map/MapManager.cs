@@ -59,8 +59,8 @@ public class MapManager : MonoBehaviour {
 	void PlaceSquare(int row, int col, GameObject square) {
 		var WallBuffer = WallWidth/2.0f; //Half the size of the wall, to take from center to edge.
 		var SquareSize = square.transform.localScale.x;
-		var verticalPosition = (FloorHeight*SquareSize) / (2.0f * GridSquare.transform.localScale.x) - row * SquareSize - WallBuffer * (2 * GridSquare.transform.localScale.x);
-		var horizontalPosition = (FloorHeight*SquareSize) / (2.0f * GridSquare.transform.localScale.x) - col * SquareSize - WallBuffer * (2 * GridSquare.transform.localScale.x);
+		var verticalPosition = (FloorHeight*SquareSize) / ( GridSquare.transform.localScale.x) - row * SquareSize;
+		var horizontalPosition = (FloorHeight*SquareSize) / (GridSquare.transform.localScale.x) - col * SquareSize - WallBuffer * (GridSquare.transform.localScale.x);
 		square.SetActive(true);
 		square.transform.position = new Vector3(verticalPosition, horizontalPosition, gameObject.transform.position.z);
 
