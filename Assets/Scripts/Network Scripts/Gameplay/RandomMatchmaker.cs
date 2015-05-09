@@ -24,7 +24,7 @@ public class RandomMatchmaker : MonoBehaviour {
     }
 
     void OnJoinedRoom() {
-        var player = PhotonNetwork.Instantiate("Player", Vector3.zero,new Quaternion(90, 0, 0, 0), 0);
+        var player = PhotonNetwork.Instantiate("Player", Vector3.zero,new Quaternion(0, 0, 0, 0), 0);
         player.GetComponent<Movement>().enabled = true;
         player.GetComponentInChildren<DropBomb>().enabled = true;
         player.GetComponentInChildren<BombInventory>().enabled = true;

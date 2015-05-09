@@ -10,17 +10,56 @@ public class Movement : MonoBehaviour {
 
     #region Private Variables
     private float _speed = 0;
+	private Animator animator;
 
     #endregion
 
     #region Standard Methods
+
+	void Start() {
+		animator = GetComponent<Animator>();
+	}
+
     // Update is called once per frame
     void Update() {
         MoveUpAndDown();
         MoveLeftAndRight();
+
+		OnKeyDown();
+		OnKeyUp();
     }
 
     #endregion
+
+	void OnKeyDown() {
+		if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) {
+			animator.SetBool("OnDown", true);
+		}
+		if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) {
+			animator.SetBool("OnUp", true);
+		}
+		if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) {
+			animator.SetBool("OnLeft", true);
+		}
+		if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
+			animator.SetBool("OnRight", true);
+		}
+	}
+
+	void OnKeyUp() {
+		if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow)) {
+			animator.SetBool("OnDown", false);
+		}
+		if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow)) {
+			animator.SetBool("OnUp", false);
+		}
+		if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow)) {
+			animator.SetBool("OnLeft", false);
+		}
+		if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow)) {
+			animator.SetBool("OnRight", false);
+		}
+	}
 
     #region Update Movement Methods
     /// <summary>
@@ -53,7 +92,6 @@ public class Movement : MonoBehaviour {
             return axisFloat;
         }
         return axisFloat + Speed * Time.deltaTime * move;
-
     }
 
     #endregion
