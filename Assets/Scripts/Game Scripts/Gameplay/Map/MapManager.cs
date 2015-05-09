@@ -33,7 +33,7 @@ public class MapManager : MonoBehaviour {
 	#region Private Methods
 	void CalculateMapSizes() {
 		WallWidth = Wall.transform.localScale.x;
-		WallHeight = Wall.transform.localScale.z;
+		WallHeight = Wall.transform.localScale.y;
 		FloorWidth = WallWidth;
 		FloorHeight = WallWidth;
 		_cubeHeight = FloorHeight/VerticalCubes;
@@ -50,7 +50,7 @@ public class MapManager : MonoBehaviour {
 		for (var i = 0; i < HorizontalCubes; i++) {
 			var square = Instantiate(GridSquare);
 			var gridSquareRenderer = GridSquare.GetComponent<Renderer>().bounds.size;
-			square.transform.localScale = new Vector3(gridSquareRenderer.x, 1, gridSquareRenderer.z);
+			square.transform.localScale = new Vector3(gridSquareRenderer.x, gridSquareRenderer.y, 1);
 			_map[row, i] = square;
 			PlaceSquare(row, i, square);
 		}
@@ -62,7 +62,7 @@ public class MapManager : MonoBehaviour {
 		var verticalPosition = (FloorHeight*SquareSize) / (2.0f * GridSquare.transform.localScale.x) - row * SquareSize - WallBuffer * (2 * GridSquare.transform.localScale.x);
 		var horizontalPosition = (FloorHeight*SquareSize) / (2.0f * GridSquare.transform.localScale.x) - col * SquareSize - WallBuffer * (2 * GridSquare.transform.localScale.x);
 		square.SetActive(true);
-		square.transform.position = new Vector3(verticalPosition, 0.0f, horizontalPosition);
+		square.transform.position = new Vector3(verticalPosition, horizontalPosition, gameObject.transform.position.z);
 
 	}
 	#endregion
