@@ -18,6 +18,12 @@ public class ExplodeBomb : MonoBehaviour {
 		Destroy(gameObject);
 	}
 
+	void OnTriggerExit(Collider col){
+		if (col.gameObject.tag == "Player") {
+			transform.GetComponent<Collider>().isTrigger = false;
+		}
+	}
+
 	void MakeExplosion(){
 		Instantiate (Explosion, transform.position, transform.rotation);
 		MakeEastBombs();
