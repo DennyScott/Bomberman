@@ -28,12 +28,6 @@ public class MapManager : MonoBehaviour {
 		_map = new GameObject[VerticalCubes, HorizontalCubes];
 		CreateGrid();
 	}
-
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 	#endregion
 
 	#region Private Methods
@@ -65,7 +59,6 @@ public class MapManager : MonoBehaviour {
 	void PlaceSquare(int row, int col, GameObject square) {
 		var WallBuffer = WallWidth/2.0f; //Half the size of the wall, to take from center to edge.
 		var SquareSize = square.transform.localScale.x;
-		Debug.Log(GridSquare.transform.localScale.x);
 		var verticalPosition = (FloorHeight*SquareSize) / (2.0f * GridSquare.transform.localScale.x) - row * SquareSize - WallBuffer * (2 * GridSquare.transform.localScale.x);
 		var horizontalPosition = (FloorHeight*SquareSize) / (2.0f * GridSquare.transform.localScale.x) - col * SquareSize - WallBuffer * (2 * GridSquare.transform.localScale.x);
 		square.SetActive(true);
